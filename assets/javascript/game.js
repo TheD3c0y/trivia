@@ -1,6 +1,6 @@
 let correct = 0;
 let total = 11;
-let percent = (correct/total) * 10;
+let percent = Math.floor((correct/total) * 100);
 let current = []
 let counter = 1;
 let holder = null;
@@ -212,7 +212,7 @@ function displayQuest(x)
     $("#answer2").html(`${listAnswer()}`);
     $("#answer3").html(`${listAnswer()}`);
     $("#answer4").html(`${listAnswer()}`);
-    timer = setInterval(() => next(), 5000);
+    timer = setInterval(() => next(), 9000);
     
 }
 
@@ -245,26 +245,29 @@ $(".form-check").click(function(event){
 
 $("#submit").click(function(){
     
-    if(holder == current.correctAnswer && counter < 11){
+    if(holder == current.correctAnswer && counter < 12){
         
         correct++
         counter++
         alert("Correct!");
 
 
+
     }else
-    if(holder != current.correctAnswer && counter < 11){
+    if(holder != current.correctAnswer && counter < 12){
         
         counter++
         alert("OMG YOUR SUCH A SCRUB!");
 
         
     }else{
+        
         alert(`Your score is: ${percent}`);
+        clearInterval(timer);
     }
     holder = null;
-    
-    percent = (correct/total) * 10;
+    clearInterval(timer);
+    percent = Math.floor((correct/total) * 100);
     $("#correct").html(`Correctly Answered:  ${correct} of ${total}`);
     $("#percentage").html(`Percentage: ${percent}%`);
     randoQuest();
